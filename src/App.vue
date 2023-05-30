@@ -13,8 +13,15 @@
     {{ attendeesList.introText }}
   </BaseList>
 
-  <base-list headline="Früchte, die mit A anfangen" :listItems="fruitsList.data"
-    >Alle Früchte, die mit dem Buchstaben <strong>A</strong> beginnen.
+  <base-list :headline="fruitsList.headline" :listItems="fruitsList.data">
+    <template v-slot:header>
+      <h3>Früchte, die mit A anfangen</h3>
+    </template>
+    Alle Früchte, die mit dem Buchstaben <strong>A</strong> beginnen.
+    <template v-slot:list-item="scopedData">
+      <strong>Nr. {{ scopedData.item.id }}: </strong>{{ scopedData.item.text }}
+      {{ scopedData.item.emoji }}
+    </template>
   </base-list>
 
   <base-list headline="Früchte mit Emojis" :listItems="fruitsList.data">
@@ -34,6 +41,19 @@
       {{ scopedData.item.text }} ({{ scopedData.item.age }})
     </template>
   </BaseList>
+
+  <base-list :headline="flowersList.headline" :listItems="flowersList.data">
+    <template v-slot:header>
+      <h3>The most beautiful {{ flowersList.headline }} 💐</h3>
+    </template>
+    <h5>blooming now in Spring.</h5>
+    <template v-slot:list-item="scopedData">
+      Nr. {{ scopedData.item.id }}: <strong>{{ scopedData.item.text }}</strong>
+      {{ scopedData.item.icon }}<br /><strong
+        >€ {{ scopedData.item.price }}</strong
+      >
+    </template>
+  </base-list>
 </template>
 
 <script>
@@ -75,6 +95,48 @@ export default {
             id: 22,
             text: "Melanie Halank",
             age: "37",
+          },
+        ],
+      },
+      flowersList: {
+        headline: "Market Fresh Flowers",
+        introText: "The most beautiful flowers blooming in Spring",
+        data: [
+          {
+            id: 41,
+            text: "Margarite",
+            icon: "🌼 ",
+            price: 1.35,
+          },
+          {
+            id: 42,
+            text: "Sun Flower",
+            icon: "🌻 ",
+            price: 2.45,
+          },
+          {
+            id: 43,
+            text: "Tulip",
+            icon: "🌷 ",
+            price: 1.75,
+          },
+          {
+            id: 44,
+            text: "Red Rose",
+            icon: "🌹 ",
+            price: 2.15,
+          },
+          {
+            id: 45,
+            text: "Fire Lily",
+            icon: "🌸 ",
+            price: 2.15,
+          },
+          {
+            id: 46,
+            text: "Hibiscus Flower",
+            icon: "🌺 ",
+            price: 2.35,
           },
         ],
       },
