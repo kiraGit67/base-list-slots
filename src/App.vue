@@ -13,13 +13,27 @@
     {{ attendeesList.introText }}
   </BaseList>
 
-  <base-list headline="Früchte, die A anfangen" :listItems="fruitsList.data"
+  <base-list headline="Früchte, die mit A anfangen" :listItems="fruitsList.data"
     >Alle Früchte, die mit dem Buchstaben <strong>A</strong> beginnen.
   </base-list>
 
-  <base-list headline="Früchte mit Emojis" :listItems="fruitsList.data"
-    >Alle Früchte, die mit dem Buchstaben <strong>A</strong> beginnen.
+  <base-list headline="Früchte mit Emojis" :listItems="fruitsList.data">
+    <template v-slot:list-item="scopedData">
+      {{ scopedData.item.emoji }} {{ scopedData.item.text }}
+    </template>
+    Alle Früchte, die mit einem <strong>Emoji</strong> versehen sind.
   </base-list>
+
+  <BaseList :headline="attendeesList.headline" :listItems="attendeesList.data">
+    <template v-slot:header
+      ><h3>{{ attendeesList.headline }} 2023</h3>
+    </template>
+    <h5>{{ attendeesList.introText }}</h5>
+    <h5>All Bootcamp Attendees who began the Bootcamp in the year 2023</h5>
+    <template v-slot:list-item="scopedData">
+      {{ scopedData.item.text }} ({{ scopedData.item.age }})
+    </template>
+  </BaseList>
 </template>
 
 <script>
