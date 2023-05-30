@@ -1,15 +1,23 @@
 <template>
-  <BaseList :headline="fruitsList.headline" :listItems="fruitsList.data">{{
-    fruitsList.introText
-  }}</BaseList>
+  <BaseList :headline="fruitsList.headline" :listItems="fruitsList.data">
+    <template v-slot:header
+      ><h3>Available {{ fruitsList.headline }}</h3></template
+    >
+    {{ fruitsList.introText }}
+  </BaseList>
 
-  <BaseList
-    :headline="attendeesList.headline"
-    :listItems="attendeesList.data"
-    >{{ attendeesList.introText }}</BaseList
-  >
+  <BaseList :headline="attendeesList.headline" :listItems="attendeesList.data">
+    <template v-slot:header
+      ><h3>{{ attendeesList.headline }} 2023</h3>
+    </template>
+    {{ attendeesList.introText }}
+  </BaseList>
 
   <base-list headline="Früchte, die A anfangen" :listItems="fruitsList.data"
+    >Alle Früchte, die mit dem Buchstaben <strong>A</strong> beginnen.
+  </base-list>
+
+  <base-list headline="Früchte mit Emojis" :listItems="fruitsList.data"
     >Alle Früchte, die mit dem Buchstaben <strong>A</strong> beginnen.
   </base-list>
 </template>
@@ -41,7 +49,7 @@ export default {
         ],
       },
       attendeesList: {
-        headline: "BootcampAttendees",
+        headline: "Bootcamp Attendees",
         introText: "A list of Bootcamp Attendees in 2023",
         data: [
           {
