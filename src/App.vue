@@ -1,15 +1,62 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <BaseList :headline="fruitsList.headline" :listItems="fruitsList.data">{{
+    fruitsList.introText
+  }}</BaseList>
+
+  <BaseList
+    :headline="attendeesList.headline"
+    :listItems="attendeesList.data"
+    >{{ attendeesList.introText }}</BaseList
+  >
+
+  <base-list headline="Früchte, die A anfangen" :listItems="fruitsList.data"
+    >Alle Früchte, die mit dem Buchstaben <strong>A</strong> beginnen.
+  </base-list>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import BaseList from "@/components/BaseList.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    BaseList,
+  },
+  data() {
+    return {
+      fruitsList: {
+        headline: "Fruits",
+        introText: "A list of available fruits",
+        data: [
+          {
+            id: 41,
+            text: "Apple",
+            emoji: "🍎 ",
+          },
+          {
+            id: 22,
+            text: "Melon",
+            emoji: "🍉",
+          },
+        ],
+      },
+      attendeesList: {
+        headline: "BootcampAttendees",
+        introText: "A list of Bootcamp Attendees in 2023",
+        data: [
+          {
+            id: 41,
+            text: "Werner Hauff",
+            age: "45",
+          },
+          {
+            id: 22,
+            text: "Melanie Halank",
+            age: "37",
+          },
+        ],
+      },
+    };
   },
 };
 </script>
@@ -19,7 +66,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center;*/
   color: #2c3e50;
   margin-top: 60px;
 }
