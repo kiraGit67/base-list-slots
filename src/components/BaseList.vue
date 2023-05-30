@@ -4,7 +4,9 @@
   </slot>
   <div class="intro-text"><slot /></div>
   <ul>
-    <li v-for="item in listItems" :key="item.id">{{ item.text }}</li>
+    <li v-for="item in listItems" :key="item.id">
+      <slot :item="item" name="list-item">{{ item.text }}</slot>
+    </li>
   </ul>
 </template>
 
