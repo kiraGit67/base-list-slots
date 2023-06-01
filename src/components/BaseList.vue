@@ -8,6 +8,7 @@
       <slot :item="item" name="list-item">{{ item.text }}</slot>
     </li>
   </ul>
+  <slot name="footer"></slot>
 </template>
 
 <script>
