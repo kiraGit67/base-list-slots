@@ -4,15 +4,28 @@
       ><h3>Available {{ fruitsList.headline }}</h3></template
     >
     {{ fruitsList.introText }}
+    <template v-slot:footer>
+      <div class="three-cols">
+        <div>
+          <h4>Kernobst</h4>
+        </div>
+        <div>
+          <h4>Steinobst</h4>
+        </div>
+        <div>
+          <h4>Zitrusfrüchte</h4>
+        </div>
+      </div>
+    </template>
   </BaseList>
-
+  <hr />
   <BaseList :headline="attendeesList.headline" :listItems="attendeesList.data">
     <template v-slot:header
       ><h3>{{ attendeesList.headline }} 2023</h3>
     </template>
     {{ attendeesList.introText }}
   </BaseList>
-
+  <hr />
   <base-list :headline="fruitsList.headline" :listItems="fruitsList.data">
     <template v-slot:header>
       <h3>Früchte, die mit A anfangen</h3>
@@ -23,14 +36,14 @@
       {{ scopedData.item.emoji }}
     </template>
   </base-list>
-
+  <hr />
   <base-list headline="Früchte mit Emojis" :listItems="fruitsList.data">
     <template v-slot:list-item="scopedData">
       {{ scopedData.item.emoji }} {{ scopedData.item.text }}
     </template>
     Alle Früchte, die mit einem <strong>Emoji</strong> versehen sind.
   </base-list>
-
+  <hr />
   <BaseList :headline="attendeesList.headline" :listItems="attendeesList.data">
     <template v-slot:header
       ><h3>{{ attendeesList.headline }} 2023</h3>
@@ -41,7 +54,7 @@
       {{ scopedData.item.text }} ({{ scopedData.item.age }})
     </template>
   </BaseList>
-
+  <hr />
   <base-list :headline="flowersList.headline" :listItems="flowersList.data">
     <template v-slot:header>
       <h3>The most beautiful {{ flowersList.headline }} 💐</h3>
@@ -52,6 +65,30 @@
       {{ scopedData.item.icon }}<br /><strong
         >€ {{ scopedData.item.price }}</strong
       >
+    </template>
+  </base-list>
+  <hr />
+  <base-list :headline="flowersList.headline" :listItems="flowersList.data">
+    <template #header>
+      <div class="headrow">
+        <h3>{{ flowersList.headline }}</h3>
+        <div>🌷 🌸 🌹 🌻 🥀 🌼 🌺</div>
+      </div>
+    </template>
+    <h4>{{ flowersList.introText }}</h4>
+    <template #list-item="slotProps">
+      <div class="props-row">
+        Nr. {{ slotProps.item.id }} - {{ slotProps.item.icon }}
+        <strong>{{ slotProps.item.text }}</strong> - €
+        {{ slotProps.item.price }}
+      </div>
+    </template>
+    <template #footer>
+      <div class="three-cols">
+        <div><h4>Spring Flowers</h4></div>
+        <div><h4>Summer Flowers</h4></div>
+        <div><h4>All Year Flowers</h4></div>
+      </div>
     </template>
   </base-list>
 </template>
@@ -153,5 +190,18 @@ export default {
   /* text-align: center;*/
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.three-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 600px;
+}
+
+.headrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 600px;
 }
 </style>
